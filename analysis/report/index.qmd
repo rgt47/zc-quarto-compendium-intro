@@ -3,7 +3,7 @@ title: "Reproducible Blog Posts with ZZCOLLAB: A Quarto Workflow"
 author: "Ronald G. Thomas"
 date: "2026-02-10"
 categories: [quarto, r, docker, reproducibility, zzcollab-compendia]
-description: "I did not really appreciate how fragile technical blog posts are until one of my own stopped rendering six months after publication. This post documents the workflow I built to treat each blog post as a standalone ZZCOLLAB reproducible research project with Docker, renv, and CI/CD."
+description: "Technical blog posts are more fragile than they look: one of my own stopped rendering six months after publication. This post documents the workflow I built to treat each blog post as a standalone ZZCOLLAB reproducible research project with Docker, renv, and CI/CD."
 image: "media/images/hero.png"
 document-type: "blog"
 draft: false
@@ -24,10 +24,10 @@ the reproducible scaffolding around it.*
 
 # Introduction
 
-I did not really know how much infrastructure a blog
-post needed until I returned to one of my own R-based
-posts six months after writing it and watched it fail
-to render. A package had updated, a system library had
+A blog post needs more infrastructure than it appears
+to. I returned to one of my own R-based posts six
+months after writing it and watched it fail to
+render. A package had updated, a system library had
 shifted, and the code that once produced clean
 diagnostic plots now threw cryptic errors. The rendered
 HTML was frozen in time, but the source code was dead.
