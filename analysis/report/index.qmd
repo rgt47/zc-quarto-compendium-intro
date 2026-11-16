@@ -429,9 +429,6 @@ setupquarto/                     # git repo root
 ![Three glass jars of different colored liquids beside an empty jar and funnel: combining R, prose, and output into one
 compendium](media/images/ambiance2.jpg){.img-fluid height=3.5in}
 
-*Reproducible workflows require careful architecture,
-much like building a well-organized library.*
-
 # The Symlink Architecture
 
 The project uses two layers of symlinks to reconcile
@@ -699,11 +696,7 @@ The post's `.qmd` content is unchanged; only the
 reproducibility scaffolding is removed.
 
 ![UCSD Geisel Library, a space for focused
-research](media/images/ambiance3.png){.img-fluid height=3.5in}
-
-*Academic research and technical writing share a common
-requirement: disciplined organization of complex
-materials.*
+research](media/images/ambiance3.jpg){.img-fluid height=3.5in}
 
 # What Did We Learn?
 
