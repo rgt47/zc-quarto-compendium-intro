@@ -141,10 +141,14 @@ in an identical environment.
 # The Lead-In Pattern
 
 Blog post projects follow the same directory convention
-used across all research software projects in this lab:
+used across all research software projects in this lab.
+(The paths below show the layout of February 2026. The
+blog has since moved to `~/prj/web/ryyblog`, with one
+flat directory per post, and the lab no longer uses
+Dropbox.)
 
 ```
-~/Dropbox/prj/qblog/posts/
+~/prj/web/qblog/posts/
 +-- 29-setupquarto/          # lead-in directory
 |   +-- archive/             # old drafts, artifacts
 |   +-- setupquarto/         # git repo (the project)
@@ -182,8 +186,8 @@ file browsers without polluting repository names.
 
 ```bash
 mkdir -p \
-  ~/Dropbox/prj/qblog/posts/43-newpost/archive
-cd ~/Dropbox/prj/qblog/posts/43-newpost
+  ~/prj/web/qblog/posts/43-newpost/archive
+cd ~/prj/web/qblog/posts/43-newpost
 ```
 
 ## Step 2: Initialize the ZZCOLLAB Project
@@ -194,7 +198,7 @@ ZZCOLLAB CLI:
 ```bash
 # Option A: Copy from template
 cp -r \
-  ~/Dropbox/prj/qblog/posts/39-templatepost/\
+  ~/prj/web/qblog/posts/39-templatepost/\
 templatepost \
   ./newpost
 
@@ -242,7 +246,7 @@ complete reproducible environment.
 # Connecting to Quarto
 
 The Quarto site lives at
-`~/Dropbox/prj/qblog/`. It discovers blog posts
+`~/prj/web/qblog/`. It discovers blog posts
 through a glob pattern in `blog/index.qmd`:
 
 ```yaml
@@ -602,7 +606,7 @@ ln -s ../media media
 
 These are relative symlinks, which is critical for
 portability. An absolute symlink
-(`/Users/zenn/Dropbox/...`) would break on any other
+(`/Users/<user>/prj/...`) would break on any other
 machine. Relative symlinks survive cloning, moving the
 project, and CI/CD environments.
 
@@ -636,12 +640,12 @@ readlink -f index.qmd
    requirement prominently or provide a setup script
    that checks permissions.
 
-2. **Dropbox follows symlinks.** Dropbox does not sync
-   symlinks as symlinks; it follows them and syncs the
-   target content. The `index.qmd` symlink at the
-   project root becomes a regular file on other
-   Dropbox-connected machines. Treat git as the
-   canonical source, not Dropbox.
+2. **Dropbox followed symlinks.** When the projects
+   lived in Dropbox, it did not sync symlinks as
+   symlinks; it followed them and synced the target
+   content, so the `index.qmd` symlink at the project
+   root became a regular file on other machines. Git is
+   the canonical source; the lab has since left Dropbox.
 
 3. **Quarto skips symlinked directories.** This was
    the most time-consuming discovery in the entire
@@ -749,10 +753,10 @@ research](media/images/ambiance3.jpg){.img-fluid height=3.5in}
   repository individually. A shared lockfile across
   posts defeats the purpose of independent dependency
   management.
-- Dropbox silently converts symlinks to regular files
-  on sync. Never rely on Dropbox as the primary
-  synchronization mechanism for projects that use
-  symlinks.
+- A sync service that follows symlinks (Dropbox did)
+  silently converts them to regular files. Never rely on
+  such a service as the primary synchronization
+  mechanism for projects that use symlinks; use git.
 
 ## Limitations
 
@@ -769,8 +773,9 @@ research](media/images/ambiance3.jpg){.img-fluid height=3.5in}
   lives outside the Docker container and may produce
   inconsistent results if posts execute R code during
   rendering rather than loading pre-computed outputs.
-- **Dropbox and symlinks are incompatible.** Dropbox
-  follows symlinks and syncs target content, making
+- **Sync services and symlinks are incompatible.**
+  Dropbox, which the lab used until September 2026,
+  followed symlinks and synced target content, making
   git the only reliable synchronization mechanism.
 - **Rendering cost.** A full site render requires
   entering each post's Docker container, restoring
